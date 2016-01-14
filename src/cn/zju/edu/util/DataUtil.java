@@ -15,14 +15,14 @@ public class DataUtil {
 	 * new DataUtil().getTrain("2015-10-12,1", 1); new
 	 * DataUtil().getTest("2015-10-13,2", 242); }
 	 */
-	public DataUtil() throws Exception {
-		/* É¾³ıÖØ¸´ÎÄ¼ş */
-		deletefile("./datasource/trainHistory.txt");
-		deletefile("./datasource/testHistory.txt");
-		deletefile("./datasource/trainStockdata.txt");
-		deletefile("./datasource/testStockdata.txt");
-	}
-
+	/*
+	 * public DataUtil() throws Exception { åˆ é™¤é‡å¤æ–‡ä»¶
+	 * 
+	 * 
+	 * 
+	 * 
+	 * }
+	 */
 	public void deletefile(String path) {
 		File file = new File(path);
 
@@ -60,8 +60,9 @@ public class DataUtil {
 		}
 	}
 
-	// »ñÈ¡ÀúÊ·Êı¾İÑµÁ·¼¯
+	// è·å–å†å²æ•°æ®è®­ç»ƒé›†
 	public void getTrainHistory(String date1, int id1) throws Exception {
+		deletefile("./datasource/trainHistory.txt");
 		HistoryDao hd = new HistoryDao();
 		double[][] b = new double[12][5];
 
@@ -70,7 +71,7 @@ public class DataUtil {
 				b[i][j] = Float.parseFloat(hd.getincrease(date1,
 						(5 * i + j + id1)));
 				System.out.println(b[i][j]);
-				// ±£´æ2015Äê10ÔÂ12ÈÕµÄÕÇ·ùÇé¿öÓÃÓÚÑµÁ·
+				// ä¿å­˜2015å¹´10æœˆ12æ—¥çš„æ¶¨å¹…æƒ…å†µç”¨äºè®­ç»ƒ
 
 			}
 
@@ -82,9 +83,9 @@ public class DataUtil {
 
 	}
 
-	// »ñÈ¡ÀúÊ·Êı¾İ²âÊÔ¼¯
+	// è·å–å†å²æ•°æ®æµ‹è¯•é›†
 	public void getTestHistory(String date2, int id2) throws Exception {
-
+		deletefile("./datasource/testHistory.txt");
 		HistoryDao hd = new HistoryDao();
 
 		double[][] b = new double[12][5];
@@ -94,7 +95,7 @@ public class DataUtil {
 				b[i][j] = Float.parseFloat(hd.getincrease(date2,
 						(5 * i + j + id2)));
 				System.out.println(b[i][j]);
-				;// ±£´æ2015Äê10ÔÂ13ÈÕµÄÕÇ·ùÇé¿öÓÃÓÚÑµÁ·
+				;// ä¿å­˜2015å¹´10æœˆ13æ—¥çš„æ¶¨å¹…æƒ…å†µç”¨äºè®­ç»ƒ
 
 			}
 
@@ -106,18 +107,19 @@ public class DataUtil {
 
 	}
 
-	// »ñÈ¡ÊµÊ±Êı¾İÑµÁ·¼¯
+	// è·å–å®æ—¶æ•°æ®è®­ç»ƒé›†
 	public void getTrainStockdata(String wz1, int id1) throws Exception {
+		deletefile("./datasource/trainStockdata.txt");
 		StockdataDao sdd = new StockdataDao();
 
 		double[][] b = new double[12][5];
 
 		for (int i = 0; i <= 11; i++) {
 			for (int j = 0; j <= 4; j++) {
-				int t1 = sc * (5 * i + j) + id1;// ¸ù¾İidºÍÊı×éÏÂ±íµİÍÆµÄ¹æÂÉ
+				int t1 = sc * (5 * i + j) + id1;// æ ¹æ®idå’Œæ•°ç»„ä¸‹è¡¨é€’æ¨çš„è§„å¾‹
 				b[i][j] = Double.parseDouble(sdd.getincrease(wz1, t1));
 				System.out.println(b[i][j]);
-				// ±£´æ2015Äê10ÔÂ12ÈÕµÄÕÇ·ùÇé¿öÓÃÓÚÑµÁ·
+				// ä¿å­˜2015å¹´10æœˆ12æ—¥çš„æ¶¨å¹…æƒ…å†µç”¨äºè®­ç»ƒ
 
 			}
 
@@ -129,16 +131,17 @@ public class DataUtil {
 
 	}
 
-	// »ñÈ¡ÊµÊ±Êı¾İ²âÊÔ¼¯
+	// è·å–å®æ—¶æ•°æ®æµ‹è¯•é›†
 	public void getTestStockdata(String wz2, int id2) throws Exception {
+		deletefile("./datasource/testStockdata.txt");
 		StockdataDao sdd = new StockdataDao();
 		double[][] b = new double[12][5];
 		for (int i = 0; i <= 11; i++) {
 			for (int j = 0; j <= 4; j++) {
-				int t2 = sc * (5 * i + j) + id2;// ¸ù¾İidºÍÊı×éÏÂ±íµİÍÆµÄ¹æÂÉ
+				int t2 = sc * (5 * i + j) + id2;// æ ¹æ®idå’Œæ•°ç»„ä¸‹è¡¨é€’æ¨çš„è§„å¾‹
 				b[i][j] = Double.parseDouble(sdd.getincrease(wz2, t2));
 				System.out.println(b[i][j]);
-				// ±£´æ2015Äê10ÔÂ12ÈÕµÄÕÇ·ùÇé¿öÓÃÓÚÑµÁ·
+				// ä¿å­˜2015å¹´10æœˆ12æ—¥çš„æ¶¨å¹…æƒ…å†µç”¨äºè®­ç»ƒ
 
 			}
 
@@ -154,18 +157,18 @@ public class DataUtil {
 		try {
 
 			File myFilePath = new File(filePathAndName.toString());
-			if (!myFilePath.exists()) { // Èç¹û¸ÃÎÄ¼ş²»´æÔÚ,Ôò´´½¨
+			if (!myFilePath.exists()) { // å¦‚æœè¯¥æ–‡ä»¶ä¸å­˜åœ¨,åˆ™åˆ›å»º
 				myFilePath.createNewFile();
 			}
-			// FileWriter(myFilePath, true); ÊµÏÖ²»¸²¸Ç×·¼Óµ½ÎÄ¼şÀï
+			// FileWriter(myFilePath, true); å®ç°ä¸è¦†ç›–è¿½åŠ åˆ°æ–‡ä»¶é‡Œ
 
-			// FileWriter(myFilePath); ¸²¸ÇµôÔ­À´µÄÄÚÈİ
+			// FileWriter(myFilePath); è¦†ç›–æ‰åŸæ¥çš„å†…å®¹
 
 			FileWriter resultFile = new FileWriter(myFilePath, true);
 
 			PrintWriter myFile = new PrintWriter(resultFile);
 
-			// ¸øÎÄ¼şÀïÃæĞ´ÄÚÈİ,Ô­À´µÄ»á¸²¸Çµô
+			// ç»™æ–‡ä»¶é‡Œé¢å†™å†…å®¹,åŸæ¥çš„ä¼šè¦†ç›–æ‰
 			myFile.println(fileContent);
 
 			resultFile.close();
